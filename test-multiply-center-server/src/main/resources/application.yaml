@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: eureka-client
+  cloud:
+    zookeeper:
+      enabled: false   # Zookeeper 服务发现与注册失效（默认）
+    consul:
+      discovery:
+        enabled: false  # consul 服务发现与注册失效（默认）
+
+
+server:
+  port: 12004
+  #port: 0 #0 代表随机端口
+
+eureka:
+  client:
+    enabled: false  # eureka 服务发现与注册失效（默认）
+
+--- # Profile for Eureka
+spring:
+  profiles: eureka
+
+eureka:
+  server:   #这里server属性不是eureka的，只为了下面的格式化配置而设置的属性
+    host: 127.0.0.1
+    port: 8888
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.server.host}:${eureka.server.port}/eureka
+    enabled: true
+    registryFetchIntervalSeconds: 5 # 5 秒轮训一次
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+
+--- #Profile for ZK
+spring:
+  profiles: zookeeper
+  cloud:
+    zookeeper:
+      enabled: true
+      connect-string: 127.0.0.1:2181
+
+--- #Profiles for Consul
+spring:
+  profiles: consul
+  cloud:
+    consul:
+      discovery:
+        enabled: true
+        ip-address: 127.0.0.1
+        port: 8500
+
+
