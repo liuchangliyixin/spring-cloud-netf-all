@@ -1,1 +1,1 @@
-本项目代码为《Spring Cloud 微服务实战》学习练习代码
+本项目代码注释：https://zhuanlan.zhihu.com/p/157647683
