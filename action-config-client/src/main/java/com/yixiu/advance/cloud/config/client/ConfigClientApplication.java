@@ -3,6 +3,7 @@ package com.yixiu.advance.cloud.config.client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.refresh.ContextRefresher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableDiscoveryClient
 public class ConfigClientApplication {
 
     private final ContextRefresher contextRefresher;
